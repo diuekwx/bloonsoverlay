@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
+import json
 
 url = "https://bloons.fandom.com/wiki/Money#Starting_Cash"
 res = requests.get(url)
@@ -19,4 +20,5 @@ for row in range(101):
     if len(elements) == 4:
         rounds[elements[0].text.strip()] = elements[2].text.strip()
 
-
+with open("scrapers/rounds.json", "w") as f:
+    json.dump(rounds, f, indent=4)
